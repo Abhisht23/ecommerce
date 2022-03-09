@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "node app.js"
   },
   "author": "Abhisht",
   "license": "ISC",
@@ -25,6 +25,7 @@
     "mongoose": "^6.0.7",
     "nodemon": "^2.0.12",
     "secure-password": "^4.0.0",
+    "stripe": "^8.191.0",
     "uuid": "^8.3.2"
   }
 }

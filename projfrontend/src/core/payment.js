@@ -68,7 +68,17 @@ const Payment = ({ products, setReload = f => f, reload = undefined }) => {
         .then(response => {
           setInfo({ ...info, success: response.success, loading: false });
           console.log("PAYMENT SUCCESS");
-        })
+        const orderData = {
+          products: products,
+          transaction_id: response.transaction_id,
+          amount: response.transaction.amount
+        };
+        createOrder(userId, token, orderData);
+        cartEmpty(() => {
+          console.log("Did we got a crash");
+        });
+        setReload(!reload);
+      })
         .catch(error => {
           setInfo({ loading: false, success: false });
           console.log("PAYMENT FAILED");
@@ -86,7 +96,7 @@ const Payment = ({ products, setReload = f => f, reload = undefined }) => {
 
   return (
     <div>
-      <h3>Your bill is $</h3>
+      <h3>Your bill is {getAmount()} $</h3>
       {showbtdropIn()}
     </div>
   );
